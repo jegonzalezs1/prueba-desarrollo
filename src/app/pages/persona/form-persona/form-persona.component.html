@@ -1,0 +1,72 @@
+<h5 class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-white">Mantenimientos de Usuario</h5>
+<form [formGroup]="formPersona" class="w-full" (ngSubmit)="onSubmit()" novalidate>
+  
+  <div class="mb-5">
+    <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre:</label>
+    <input type="text" id="nombre" class="form-control" formControlName="nombre" required>
+    @if (formPersona.get('nombre')?.hasError('required') && formPersona.get('nombre')?.touched) {
+    <div class="form-error">El nombre es requerido</div>
+    }
+  </div>
+
+  <div class="mb-5">
+    <label for="apellido" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido:</label>
+    <input type="text" id="apellido" class="form-control" formControlName="apellido" required>
+    @if (formPersona.get('apellido')?.hasError('required') && formPersona.get('apellido')?.touched) {
+    <div class="form-error">El apellido es requerido</div>
+    }
+  </div>
+
+  <div class="mb-5">
+    <label for="identificacion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Identificación:</label>
+    <input type="text" id="identificacion" class="form-control" formControlName="identificacion" required>
+    @if (formPersona.get('identificacion')?.hasError('required') && formPersona.get('identificacion')?.touched) {
+    <div class="form-error">La identificación es requerida</div>
+    }
+  </div>
+
+  <div class="mb-5">
+    <label for="fecha_nacimiento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de Nacimiento:</label>
+    <input type="date" id="fechaNacimiento" class="form-control" formControlName="fechaNacimiento" (change)="onDateChange($event)" required>
+    @if (formPersona.get('fechaNacimiento')?.hasError('required') && formPersona.get('fechaNacimiento')?.touched) {
+    <div class="form-error">La fecha de nacimiento es requerida</div>
+    }
+  </div>
+
+  <div class="mb-5">
+    <label for="edad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Edad:</label>
+    <input type="number" id="edad" class="form-control" formControlName="edad" required>
+    @if (formPersona.get('edad')?.hasError('required') && formPersona.get('edad')?.touched) {
+    <div class="form-error">La edad es requerida</div>
+    }
+  </div>
+
+  <div class="mb-5">
+    <label for="estatura" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estatura:</label>
+    <input type="number" id="estatura" class="form-control" formControlName="estatura" step="0.01" required>
+    @if (formPersona.get('estatura')?.hasError('required') && formPersona.get('estatura')?.touched) {
+    <div class="form-error">La estatura es requerida</div>
+    }
+  </div>
+
+  <div class="mb-5">
+    <label for="direccion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dirección:</label>
+    <input type="text" id="direccion" class="form-control" formControlName="direccion" required>
+    @if (formPersona.get('direccion')?.hasError('required') && formPersona.get('direccion')?.touched) {
+    <div class="form-error">La dirección es requerida</div>
+    }
+  </div>
+
+  <div class="mb-5">
+    <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono:</label>
+    <input type="text" id="telefono" class="form-control" formControlName="telefono" required>
+    @if (formPersona.get('telefono')?.hasError('required') && formPersona.get('telefono')?.touched) {
+    <div class="form-error">El teléfono es requerido</div>
+    }
+  </div>
+
+  <div class="flex justify-end items-center mb-6">
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-small px-3 py-2 text-center mb-2">Guardar</button>
+    <button type="button" (click)="onClose()" class="text-white ms-2 bg-gray-700 hover:bg-gray-800 font-small px-3 py-2 text-center mb-2">Cancelar</button>
+  </div>
+</form>

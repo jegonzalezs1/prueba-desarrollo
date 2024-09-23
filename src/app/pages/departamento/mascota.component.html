@@ -1,0 +1,53 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <caption class="p-5 text-sm text-left rtl:text-right text-gray-600 bg-white dark:text-white dark:bg-gray-300">
+      Módulo de Administración
+      <h3 class="p-0 text-lg font-semibold text-left rtl:text-right text-gray-600 bg-white dark:text-white dark:bg-gray-300">
+        Administración de Mascotas
+      </h3>
+      <div class="flex justify-between items-center mb-6">
+        <h4 class="font-bold text-2xl"></h4>
+        <div class="flex justify-start items-center mb-6">
+          <button type="button" (click)="openModel()" class="text-gray-1200 bg-gray-200 hover:bg-gray-300 focus:outline-none font-small px-3 py-2 text-center mb-2">
+            Crear nueva mascota
+          </button>
+        </div>
+      </div>
+    </caption>
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3 text-center">Nombre</th>
+        <th scope="col" class="px-6 py-3 text-center">Especie</th>
+        <th scope="col" class="px-6 py-3 text-center">Raza</th>
+        <th scope="col" class="px-6 py-3 text-center">Color</th>
+        <th scope="col" class="px-6 py-3 text-center">Edad</th>
+        <th scope="col" class="px-6 py-3 text-center">Persona</th>
+        <th scope="col" class="px-6 py-3">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of mascotas; track $index) {
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <td class="px-6 py-4 text-justify">{{ item.nombre }}</td>
+        <td class="px-6 py-4 text-justify">{{ item.especie }}</td>
+        <td class="px-6 py-4 text-justify">{{ item.raza }}</td>
+        <td class="px-6 py-4 text-justify">{{ item.color }}</td>
+        <td class="px-6 py-4 text-justify">{{ item.edad + " años" }}</td>
+        <td class="px-6 py-4 text-justify">{{ item.dueno.nombre + " " + item.dueno.apellido }}</td>
+        <td class="px-6 py-4 text-center">
+          <button type="button" (click)="item.idMascota && loadMascota(item)" class="font-medium text-green-700 dark:text-green-500 hover:underline mr-4">
+            <i class="bi bi-pencil-square">Editar</i>
+          </button>
+          <button type="button" (click)="item.idMascota && deleteMascota(item.idMascota)" class="font-medium text-red-600 dark:text-red-400 hover:underline">
+            <i class="bi bi-trash">Eliminar</i>
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<app-model [isOpen]="isModelOpen" (closeModel)="closeModel()">
+  <app-form-mascota (onCloseModel)="closeModel()" [data]="mascota"></app-form-mascota>
+</app-model>
